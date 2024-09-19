@@ -1,0 +1,45 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+ }
+ 
+ header { 
+    position: fixed;
+    width: 99%;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+ }
+
+ body { 
+    padding-top: 60px;
+ }
+
+
+ .product-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    height: 100%;
+    flex-direction: column;
+}
+
+.product-image img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    margin: 10px 0;
+}
+
+.product-card p {
+    margin: 5px 0;
+}
+
+.form-label {
+    font-size: 18px;
+    font-weight: bold;
+}
