@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <p>Tipo de propiedad: ${item.tipo}</p>
                                 <p>Cantidad de Dormitorios: ${item.dormitorios}</p>
                                 <p>Cantidad de Baños: ${item.baños}</p>
-                                <p>Baño Social: ${item.bañoSocial ? 'Sí' : 'No'}</p>
-                                <p>Cochera: ${item.cochera > 0 ? 'Sí' : 'No'}</p>
+                                <p>Baño Social: ${item.bañoSocial}</p>
+                                <p>Cochera: ${item.cochera}</p>
                                 <p>Precio: ${item.moneda} ${item.precio}</p>
                             </div>
                         </div>
@@ -49,53 +49,48 @@ document.addEventListener("DOMContentLoaded", function () {
             const aplicarFiltros = () => {
                 const precioMin = parseFloat(document.getElementById('filtMin').value) || 0;
                 const precioMax = parseFloat(document.getElementById('filtMax').value) || Infinity;
-
+            
                 const barriosSeleccionados = Array.from(document.querySelectorAll('input[id^=pocitos], input[id^=cordon], input[id^=laBlanqueada], input[id^=buceo], input[id^=malvin]'))
                     .filter(checkbox => checkbox.checked)
                     .map(checkbox => checkbox.value);
-
+            
                 const tiposSeleccionados = Array.from(document.querySelectorAll('input[id^=casa], input[id^=apartamento]'))
                     .filter(checkbox => checkbox.checked)
                     .map(checkbox => checkbox.value);
-
+            
                 const dormitoriosSeleccionados = Array.from(document.querySelectorAll('input[id^=monoambiente], input[id^=unDorm], input[id^=dosDorm], input[id^=tresDorm], input[id^=masDorm]'))
                     .filter(checkbox => checkbox.checked)
                     .map(checkbox => checkbox.value);
-
+            
                 const banosSeleccionados = Array.from(document.querySelectorAll('input[id^=unBaño], input[id^=dosBaños], input[id^=masBaños]'))
                     .filter(checkbox => checkbox.checked)
                     .map(checkbox => checkbox.value);
-
+            
                 const banoSocialSeleccionado = document.querySelector('input[name="banoSocial"]:checked')?.value || '';
-
+            
                 const cocheraSeleccionada = document.querySelector('input[name="cochera"]:checked')?.value || '';
-
+            
                 productosFiltrados = productosOriginales.filter(producto => {
                     return producto.precio >= precioMin && producto.precio <= precioMax &&
                         (barriosSeleccionados.length === 0 || barriosSeleccionados.includes(producto.barrio)) &&
                         (tiposSeleccionados.length === 0 || tiposSeleccionados.includes(producto.tipo)) &&
-                        
-                        // Filtro de dormitorios, incluyendo el caso de "masDorm" (4 o más dormitorios)
                         (dormitoriosSeleccionados.length === 0 ||
                             dormitoriosSeleccionados.includes(String(producto.dormitorios)) ||
                             (dormitoriosSeleccionados.includes("masDorm") && producto.dormitorios >= 4)) &&
-
-                        // Filtro de baños, incluyendo el caso de "masBaños" (3 o más baños)
                         (banosSeleccionados.length === 0 ||
                             banosSeleccionados.includes(String(producto.baños)) ||
                             (banosSeleccionados.includes("masBaños") && producto.baños >= 3)) &&
-                        
                         (banoSocialSeleccionado === '' || 
-                            (banoSocialSeleccionado === "Con Baño Social" && producto.bañoSocial) || 
-                            (banoSocialSeleccionado === "Sin Baño Social" && !producto.bañoSocial)) &&
-                        
+                            (banoSocialSeleccionado === "Con Baño Social" && producto.bañoSocial === "Si") || 
+                            (banoSocialSeleccionado === "Sin Baño Social" && producto.bañoSocial === "No")) &&
                         (cocheraSeleccionada === '' || 
                             (cocheraSeleccionada === "Con Cochera" && producto.cochera > 0) || 
                             (cocheraSeleccionada === "Sin Cochera" && producto.cochera === 0));
                 });
-
+            
                 renderizarProductos(productosFiltrados);
             };
+            
 
             const limpiarFiltros = () => {
                 productosFiltrados = [...productosOriginales];
@@ -143,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('clear-bedroom-filters').addEventListener('click', clearBedroomFilters);
             document.getElementById('clear-bathroom-filters').addEventListener('click', clearBathroomFilters);
             document.getElementById('clear-social-bathroom-filters').addEventListener('click', clearSocialBathroomFilters);
-            document.getElementById('clear-garage-filters').addEventListener('click', clearGarageFilters);
+            document.getElementById('clear-cochera-filters').addEventListener('click', clearGarageFilters);
         })
         .catch(error => {
             console.error('Error al cargar los datos:', error);
