@@ -28,13 +28,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     productCard.innerHTML = `
                         <div id="articulos-autos" class="product-card">    
                             <div class="product-image">
-                                <img src="${item.image}" alt="${item.name}">
+                                <img src="${item.image}" alt="${item.direccion}">
                             </div>
                             <div>
-                                <h3>${item.name}</h3>
-                                <p>${item.description}</p>
-                                <p>Precio: ${item.currency} ${item.cost}</p>
-                                <p>Cantidad vendida: ${item.soldCount} artículos</p>
+                                <h3>${item.direccion}</h3>
+                                <p>Barrio: ${item.barrio}</p>
+                                <p>Tipo de propiedad: ${item.tipo}</p>
+                                <p>Cantidad de Dormitorios: ${item.dormitorios}</p>
+                                <p>Cantidad de Baños: ${item.baños}</p>
+                                <p>Baño Social: ${item.bañoSocial}</p>
+                                <p>Cochera: ${item.cochera}</p>
+                                <p>Precio: ${item.moneda} ${item.precio}</p>
                             </div>
                         </div>
                     `;
@@ -68,16 +72,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const banoSocialSeleccionado = document.querySelector('input[name="banoSocial"]:checked')?.value || '';
 
-                const garageSeleccionado = document.querySelector('input[name="garage"]:checked')?.value || '';
+                const garageSeleccionado = document.querySelector('input[name="cochera"]:checked')?.value || '';
 
                 productosFiltrados = productosOriginales.filter(producto => {
                     return producto.cost >= precioMin && producto.cost <= precioMax &&
-                        (barriosSeleccionados.length === 0 || barriosSeleccionados.includes(producto.neighborhood)) &&
-                        (tiposSeleccionados.length === 0 || tiposSeleccionados.includes(producto.propertyType)) &&
-                        (dormitoriosSeleccionados.length === 0 || dormitoriosSeleccionados.includes(producto.bedrooms)) &&
-                        (banosSeleccionados.length === 0 || banosSeleccionados.includes(producto.bathrooms)) &&
-                        (banoSocialSeleccionado === '' || banoSocialSeleccionado === producto.socialBathroom) &&
-                        (garageSeleccionado === '' || garageSeleccionado === producto.garage);
+                        (barriosSeleccionados.length === 0 || barriosSeleccionados.includes(producto.barrio)) &&
+                        (tiposSeleccionados.length === 0 || tiposSeleccionados.includes(producto.tipo)) &&
+                        (dormitoriosSeleccionados.length === 0 || dormitoriosSeleccionados.includes(producto.dormitorios)) &&
+                        (banosSeleccionados.length === 0 || banosSeleccionados.includes(producto.baños)) &&
+                        (banoSocialSeleccionado === '' || banoSocialSeleccionado === producto.bañoSocial) &&
+                        (garageSeleccionado === '' || garageSeleccionado === producto.cochera);
                 });
 
                 // Renderizar los productos filtrados
@@ -123,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             const clearGarageFilters = () => {
-                document.querySelectorAll('input[name="garage"]').forEach(radio => radio.checked = false);
+                document.querySelectorAll('input[name="cochera"]').forEach(radio => radio.checked = false);
             };
 
             document.getElementById('apply-filters').addEventListener('click', aplicarFiltros); // Botón de aplicar filtros
@@ -134,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('clear-bedroom-filters').addEventListener('click', clearBedroomFilters); // Botón de borrar filtro de dormitorios
             document.getElementById('clear-bathroom-filters').addEventListener('click', clearBathroomFilters); // Botón de borrar filtro de baños
             document.getElementById('clear-social-bathroom-filters').addEventListener('click', clearSocialBathroomFilters); // Botón de borrar filtro de baño social
-            document.getElementById('clear-garage-filters').addEventListener('click', clearGarageFilters); // Botón de borrar filtro de garaje
+            document.getElementById('clear-garage-filters').addEventListener('click', clearGarageFilters); // Botón de borrar filtro de cochera
         })
         .catch(error => {
             console.error('Error al cargar los datos:', error); // Maneja errores en caso de que la carga de datos falle
