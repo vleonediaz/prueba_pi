@@ -72,11 +72,11 @@
                     <div class="mb-3">
                         <label class="form-label">Tipo de propiedad</label>
                         <div>
-                            <input type="checkbox" id="casa" value="Casa">
+                            <input type="checkbox" id="casa" value="casa">
                             <label for="casa">Casa</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="apartamento" value="Apartamento">
+                            <input type="checkbox" id="apartamento" value="apartamento">
                             <label for="apartamento">Apartamento</label>
                         </div>
                         <button type="button" class="btn btn-secondary btn-sm mt-2" id="clear-type-filters">Borrar Tipo</button>
@@ -86,19 +86,19 @@
                     <div class="mb-3">
                         <label class="form-label">Dormitorios</label>
                         <div>
-                            <input type="checkbox" id="monoambiente" value="monoambiente">
+                            <input type="checkbox" id="monoambiente" value="0">
                             <label for="monoambiente">Monoambiente</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="unDorm" value="unDorm">
+                            <input type="checkbox" id="unDorm" value="1">
                             <label for="unDorm">1</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="dosDorm" value="dosDorm">
+                            <input type="checkbox" id="dosDorm" value="2">
                             <label for="dosDorm">2</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="tresDorm" value="tresDorm">
+                            <input type="checkbox" id="tresDorm" value="3">
                             <label for="tresDorm">3</label>
                         </div>
                         <div>
@@ -112,11 +112,11 @@
                     <div class="mb-3">
                         <label class="form-label">Baños</label>
                         <div>
-                            <input type="checkbox" id="unBaño" value="unBaño">
+                            <input type="checkbox" id="unBaño" value="1">
                             <label for="unBaño">1</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="dosBaños" value="dosBaños">
+                            <input type="checkbox" id="dosBaños" value="2">
                             <label for="dosBaños">2</label>
                         </div>
                         <div>
@@ -141,18 +141,20 @@
                     </div>
 
                     <!-- Filtro por garaje -->
+                    <!-- Filtro por cochera -->
                     <div class="mb-3">
                         <label class="form-label">Cochera</label>
                         <div class="mb-3 mt-2">
-                            <input type="radio" id="garageYes" name="garage" value="Con Garaje">
-                            <label for="garageYes">Si</label>
+                            <input type="radio" id="cocheraYes" name="cochera" value="conCochera">
+                            <label for="cocheraYes">Si</label>
                         </div>
                         <div>
-                            <input type="radio" id="garageNo" name="garage" value="Sin Garaje">
-                            <label for="garageNo">No</label>
+                            <input type="radio" id="cocheraNo" name="cochera" value="sinCochera">
+                            <label for="cocheraNo">No</label>
                         </div>
-                        <button type="button" class="btn btn-secondary btn-sm mt-2" id="clear-garage-filters">Borrar Cochera</button>
+                        <button type="button" class="btn btn-secondary btn-sm mt-2" id="clear-cochera-filters">Borrar Cochera</button>
                     </div>
+
 
                     <button type="button" class="btn btn-primary" id="apply-filters">Aplicar filtros</button>
                     <button type="button" class="btn btn-secondary" id="reset-filters">Restablecer todos los filtros</button>
